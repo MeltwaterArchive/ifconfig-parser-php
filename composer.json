@@ -1,0 +1,12 @@
+{
+    "name": "datasift/ifconfig-parser",
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "whatthejeff/nyancat-phpunit-resultprinter": "~1.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Datasift": "src/"
+        }
+    }
+}
