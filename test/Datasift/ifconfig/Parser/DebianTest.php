@@ -46,7 +46,7 @@ require_once __DIR__.'/../ParserTestBase.php';
 class DebianTest extends ParserTestBase {
 
     public function setUp(){
-        $this->parser = new Ubuntu;
+        $this->parser = new Debian;
     }
 
     public function exampleIfconfigProvider(){
