@@ -64,7 +64,7 @@ class Base {
      * @return string
      */
     public function getRegex(){
-        return "^(?<interface>(?:[^\s]+)).*?(?:inet addr:(?<ip_address>(?:\d+\.?){4})|$)";
+        return "^(?<interface>(?:[^\s]+)).*?(?:inet (?:addr:)?(?<ip_address>(?:\d+\.?){4})|$)";
     }
 
     /**
@@ -72,13 +72,13 @@ class Base {
      *
      * @param mixed $input ifconfig input to parse
      *
-     * @return string
+     * @return array
      */
     public function parse($input){
-        $adapters = preg_split("/" . $this->getDelimiter() . "/s", $input, null);
+        $adapters = preg_split('/' . $this->getDelimiter() . '/s', $input, null);
         $vals = array();
         foreach ($adapters as $int){
-            preg_match("/".$this->getRegex()."/s", $int, $output);
+            preg_match('/' . $this->getRegex() . '/s', $int, $output);
             $vals[] = $output;
         }
 
@@ -97,7 +97,7 @@ class Base {
         $formattedVals = array();
 
         $expectedFields = array(
-            "interface", "ip_address"
+            'interface', 'ip_address'
         );
 
         foreach ($vals as $v){
@@ -112,7 +112,7 @@ class Base {
         }
 
         // Remove any entries that don't have an interface
-        $formattedVals = array_filter($formattedVals, function($val){
+        $formattedVals = array_filter($formattedVals, static function($val){
             return isset($val['interface']);
         });
 
